@@ -51,4 +51,14 @@ Along the way:
 
 ---
 
+## Workshops
+
+Run-of-show rundowns for each live session — useful as a record and a template for the next one.
+
+| # | Rundown | When & where |
+|---|---------|--------------|
+| 01 | **[Vibe Coding Meaningful Games](workshop01-rundown.md)** | SPACE4, London · 11 Jun 2026 |
+
+---
+
 *A workshop by [Playable Stories](https://github.com/PlayableStories). You don't need to be a coder. You won't become one today. You'll become a game designer.*
