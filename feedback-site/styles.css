@@ -1,0 +1,172 @@
+:root {
+  --bg: #0f1020;
+  --bg2: #1a1430;
+  --card: #ffffff;
+  --ink: #1c1b2e;
+  --muted: #6b6880;
+  --line: #e7e4ef;
+  --accent: #5b4ad1;
+  --accent-soft: #efecfb;
+  --accent-ink: #3a2da0;
+  --star: #f2b705;
+  --ok: #1f9d63;
+  --err: #d24545;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #2a2150 0%, transparent 60%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
+  min-height: 100vh;
+  padding: 32px 18px 56px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  padding: 36px 32px 28px;
+}
+
+.head { text-align: center; margin-bottom: 26px; }
+.moon { font-size: 38px; line-height: 1; }
+.moon.big { font-size: 52px; }
+.head h1 { font-size: 26px; margin: 10px 0 4px; letter-spacing: -0.02em; }
+.head .sub { margin: 0; color: var(--accent-ink); font-weight: 600; font-size: 15px; }
+.head .meta { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+
+form { display: flex; flex-direction: column; gap: 22px; }
+
+fieldset.q { border: 0; margin: 0; padding: 0; }
+legend {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+legend em { color: var(--muted); font-weight: 400; font-style: normal; font-size: 14px; }
+legend .n {
+  display: inline-grid;
+  place-items: center;
+  width: 24px; height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: 2px;
+}
+
+/* Chips (radios & checkboxes) */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .15s, background .15s, color .15s;
+  background: #fff;
+}
+.chip:hover { border-color: #c9c2e6; }
+.chip input { accent-color: var(--accent); margin: 0; }
+.chip:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.other {
+  margin-top: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  font: inherit;
+  font-size: 14px;
+}
+.other:focus, textarea:focus { outline: none; border-color: var(--accent); }
+
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+/* Stars */
+.stars { display: flex; gap: 4px; }
+.star {
+  background: none;
+  border: none;
+  font-size: 34px;
+  line-height: 1;
+  color: #d9d5e6;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: color .12s, transform .08s;
+}
+.star:hover { transform: scale(1.08); }
+.star.on { color: var(--star); }
+.hint { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+
+/* Actions */
+.actions { margin-top: 4px; }
+.submit {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, transform .05s;
+}
+.submit:hover { background: var(--accent-ink); }
+.submit:active { transform: translateY(1px); }
+.submit:disabled { opacity: .6; cursor: progress; }
+.status { text-align: center; font-size: 14px; margin: 12px 0 0; min-height: 18px; }
+.status.err { color: var(--err); }
+.status.ok { color: var(--ok); }
+
+/* Thanks */
+.thanks { text-align: center; padding: 20px 0; }
+.thanks h2 { font-size: 26px; margin: 12px 0 6px; }
+.thanks p { color: var(--muted); margin: 6px 0; }
+.thanks .small { font-size: 13px; font-style: italic; }
+
+.foot {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  margin-top: 22px;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 26px 20px 22px; }
+  .head h1 { font-size: 22px; }
+  legend { font-size: 15px; }
+}

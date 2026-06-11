@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playable Stories — Workshop Feedback</title>
+  <meta name="description" content="Tell us what you thought of the Playable Stories workshop. Takes about 2 minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="head">
+      <div class="moon">🌗</div>
+      <h1>Workshop Feedback</h1>
+      <p class="sub">Playable Stories: Vibe Coding Meaningful Games</p>
+      <p class="meta">SPACE4, London · 11 Jun 2026 &nbsp;·&nbsp; takes about 2 minutes</p>
+    </header>
+
+    <form id="feedback-form" novalidate>
+
+      <!-- 1. Role -->
+      <fieldset class="q">
+        <legend><span class="n">1</span> Which best describes you? <em>(tick all that apply)</em></legend>
+        <div class="chips" data-group="role">
+          <label class="chip"><input type="checkbox" name="role" value="Student" /> Student</label>
+          <label class="chip"><input type="checkbox" name="role" value="Educator" /> Educator</label>
+          <label class="chip"><input type="checkbox" name="role" value="Game developer" /> Game developer</label>
+          <label class="chip"><input type="checkbox" name="role" value="Artist / creative" /> Artist / creative</label>
+          <label class="chip"><input type="checkbox" name="role" value="NGO / charity" /> NGO / charity</label>
+          <label class="chip"><input type="checkbox" name="role" value="Community organiser" /> Community organiser</label>
+          <label class="chip"><input type="checkbox" name="role" value="Researcher" /> Researcher</label>
+          <label class="chip"><input type="checkbox" name="role" value="Entrepreneur / founder" /> Entrepreneur / founder</label>
+          <label class="chip"><input type="checkbox" name="role" value="Hobbyist" /> Hobbyist</label>
+        </div>
+        <input type="text" class="other" name="role_other" placeholder="Something else? Tell us…" />
+      </fieldset>
+
+      <!-- 2. Rating -->
+      <fieldset class="q">
+        <legend><span class="n">2</span> Overall, how would you rate the workshop?</legend>
+        <div class="stars" id="stars" role="radiogroup" aria-label="Overall rating">
+          <button type="button" class="star" data-value="1" aria-label="1 star">★</button>
+          <button type="button" class="star" data-value="2" aria-label="2 stars">★</button>
+          <button type="button" class="star" data-value="3" aria-label="3 stars">★</button>
+          <button type="button" class="star" data-value="4" aria-label="4 stars">★</button>
+          <button type="button" class="star" data-value="5" aria-label="5 stars">★</button>
+        </div>
+        <input type="hidden" name="rating" id="rating" />
+        <p class="hint" id="rating-hint">Poor → Excellent</p>
+      </fieldset>
+
+      <!-- 3. Pace -->
+      <fieldset class="q">
+        <legend><span class="n">3</span> Was the pace right for you?</legend>
+        <div class="chips one">
+          <label class="chip"><input type="radio" name="pace" value="Too slow" /> Too slow</label>
+          <label class="chip"><input type="radio" name="pace" value="About right" /> About right</label>
+          <label class="chip"><input type="radio" name="pace" value="Too fast" /> Too fast</label>
+        </div>
+      </fieldset>
+
+      <!-- 4. Most valuable -->
+      <fieldset class="q">
+        <legend><span class="n">4</span> Which part was most valuable to you?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="valuable" value="Mechanics as meaning" /> Mechanics as meaning</label>
+          <label class="chip"><input type="radio" name="valuable" value="Story-first / the worksheet" /> Story-first / the worksheet</label>
+          <label class="chip"><input type="radio" name="valuable" value="Designing a mechanic" /> Designing a mechanic</label>
+          <label class="chip"><input type="radio" name="valuable" value="Building with AI" /> Building with AI</label>
+          <label class="chip"><input type="radio" name="valuable" value="Sharing & reflection" /> Sharing &amp; reflection</label>
+        </div>
+        <input type="text" class="other" name="valuable_other" placeholder="Something else? Tell us…" />
+      </fieldset>
+
+      <!-- 5. Confidence -->
+      <fieldset class="q">
+        <legend><span class="n">5</span> Did you come away more confident about making a meaningful game?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="confidence" value="Grew a lot" /> Grew a lot</label>
+          <label class="chip"><input type="radio" name="confidence" value="Grew a bit" /> Grew a bit</label>
+          <label class="chip"><input type="radio" name="confidence" value="No change" /> No change</label>
+          <label class="chip"><input type="radio" name="confidence" value="Less confident" /> Less confident</label>
+        </div>
+      </fieldset>
+
+      <!-- 6. Prototype -->
+      <fieldset class="q">
+        <legend><span class="n">6</span> Did you build a playable prototype today?</legend>
+        <div class="chips one">
+          <label class="chip"><input type="radio" name="prototype" value="Yes" /> Yes</label>
+          <label class="chip"><input type="radio" name="prototype" value="Partly" /> Partly</label>
+          <label class="chip"><input type="radio" name="prototype" value="No" /> No</label>
+        </div>
+        <input type="text" class="other" name="prototype_desc" placeholder="If yes — what was it about, in a sentence?" />
+      </fieldset>
+
+      <!-- 7. Keep / change -->
+      <fieldset class="q">
+        <legend><span class="n">7</span> One thing we should <strong>keep</strong>, and one we should <strong>change</strong>?</legend>
+        <textarea name="keep_change" rows="3" placeholder="A line or two is plenty."></textarea>
+      </fieldset>
+
+      <!-- 8. Email opt-in -->
+      <fieldset class="q">
+        <legend><span class="n">8</span> Want to hear about future Playable Stories events?</legend>
+        <div class="chips one">
+          <label class="chip"><input type="radio" name="optin" value="No" /> No thanks</label>
+          <label class="chip"><input type="radio" name="optin" value="Yes" /> Yes please</label>
+        </div>
+        <input type="text" class="other" id="name" name="name" placeholder="Your name" />
+        <input type="email" class="other" id="email" name="email" placeholder="your@email.com" />
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="submit" id="submit">Send feedback</button>
+        <p class="status" id="status" role="status"></p>
+      </div>
+    </form>
+
+    <section class="thanks" id="thanks" hidden>
+      <div class="moon big">🌗</div>
+      <h2>Thank you.</h2>
+      <p>Your feedback is in — it genuinely shapes the next session.</p>
+      <p class="small">Thank you for making something that means something.</p>
+    </section>
+  </main>
+
+  <footer class="foot">A workshop by Playable Stories · Into Storymode</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

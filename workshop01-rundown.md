@@ -188,6 +188,18 @@ This is the hands-on heart of the session. We'll go together at the start, then 
 * Keep going: try **Rung 3 (Rebuild)** from a blank Replit, or remix a different catalogue game.
 * Q&A and networking.
 
+#### 📋 Before you go — two minutes of feedback
+
+Your feedback genuinely shapes the next session. Scan the code or open the link:
+
+<p align="center">
+  <a href="https://forms.gle/fP8LDfjrJZhkaKKy6">
+    <img src="assets/feedback-qr.png" alt="Feedback form QR code" width="220" />
+  </a>
+</p>
+
+👉 **[forms.gle/fP8LDfjrJZhkaKKy6](https://forms.gle/fP8LDfjrJZhkaKKy6)**
+
 **You came in a non-coder. You're leaving a game designer** — someone who can take an idea that matters and turn it into something others can play and feel.
 
 ### What you'll take away
