@@ -48,6 +48,7 @@ Along the way:
 - 🗂 **[Prompt library](prompts/)** — copy-paste sentences that get the AI to do what you want
 - 📝 **[The meaning worksheet](worksheet.md)** — figure out *what your game is about* before you build
 - 🖼 **[Gallery](gallery.md)** — add what you made
+- 🗓 **[Workshop 01 rundown](workshop01-rundown.md)** — the run of show for the live session (SPACE4, London · 11 Jun 2026)
 
 ---
 
