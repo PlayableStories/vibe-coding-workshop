@@ -15,8 +15,6 @@ Take a breath. You can't break anything that can't be undone.
    ```
 5. Replit will pull the game in. Give it a moment.
 
-> **If you chose Half of Me**, after importing you may need to switch to the `submission-vibecoding` branch — just ask the AI: *"Switch this project to the submission-vibecoding branch."*
-
 ## Step 2 — Run it once, as-is
 
 Press the big **Run** button at the top. A preview of the game appears. Play it for a minute.

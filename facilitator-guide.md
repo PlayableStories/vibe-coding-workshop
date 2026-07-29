@@ -10,26 +10,26 @@ Every attendee leaves with a **published, playable link** to a game that means s
 
 Repeat it until it's a chant: **the mechanic is the message.** Everything in the room ladders up to that. When someone's stuck on meaning, point them back at it. When someone's stuck on tooling, take it off their plate so they can get back to it.
 
-## Suggested run of a 2-hour session
+## Suggested run of a 2.5-hour session
 
 | Time | What | Notes |
 |------|------|-------|
 | 0:00 | Welcome + the big idea | Play 1–2 catalogue games *live*. Land "the mechanic is the message" with the Pill Match and Memory of Home examples. |
-| 0:15 | The worksheet | Everyone fills in **[worksheet.md](worksheet.md)** — the one sentence. Don't skip; it's the backbone. Pair people up to say their sentence out loud. |
-| 0:30 | Pick + import | Walk the room through importing into Replit together, in lockstep. This is the highest-friction moment — go slow, get everyone running before moving on. |
-| 0:45 | Reskin (Rung 1) | Hands-on. Float and unstick. Most arrive at a themed, playable game here. |
-| 1:15 | Remix (Rung 2) | Show **Half of Me vs Memory of Home** as the worked example, then let them try one rule. Reassure loudly that a missed remix is the workshop *working*. |
-| 1:40 | Publish | Walk through Replit deploy together. Have them open their link on a phone. |
-| 1:50 | Show-and-tell | 60 seconds each: *started from / changed / what it's about.* Add to the gallery. |
+| 0:10 | Introductions | ~30 seconds each: name, project, a story or topic they care about. |
+| 0:20 | Why games mean something + mechanics as meaning | Land "Message → Experience → Mechanic." Close with the pair exercise: list game conventions, then ask what breaking one would feel like. |
+| 0:55 | The worksheet | Everyone fills in **[worksheet.md](worksheet.md)** — the one sentence. Don't skip; it's the backbone. Pair people up to say their sentence out loud. |
+| 1:05 | Pick + import | Walk the room through the six-game routing line, then importing into Replit together, in lockstep. This is the highest-friction moment — go slow, get everyone running before moving on. |
+| 1:20 | Reskin (Rung 1) then Remix (Rung 2) | Hands-on, 45 minutes. Most arrive at a themed, playable game. For remix, show **Half of Me vs Memory of Home** as the worked example, then have them find the expectation to break. Reassure loudly that a missed remix is the workshop *working*. |
+| 2:05 | Publish | Walk through Replit deploy together. Have them open their link on a phone, then submit it to **Storymode Shorts**. |
+| 2:20 | Show-and-tell | 60 seconds each: *started from / changed / what it's about* — then ask the three consent questions (name / link / quote) out loud, while everyone's still in the room. |
 
 Adjust freely; the worksheet → reskin → publish spine is the part to protect if time runs short. Remix is the dream, not the requirement.
 
 ## Before the day — things to prep
 
-- [ ] **Add live "▶ Play" links** to the catalogue in **[02-pick-a-game.md](02-pick-a-game.md)** (placeholders are in there now). Playing a game before importing it really helps people choose.
-- [ ] **Test the Replit import** for each of the five repos yourself, end to end, including publish. Note any quirks (especially Half of Me's `submission-vibecoding` branch).
+- [ ] **Test the Replit import** for each of the six repos yourself, end to end, including publish.
 - [ ] Confirm whether your Replit plan / the room's accounts can **publish** without payment, and know which deploy option to tell people to pick.
-- [ ] Decide how attendees add to the **gallery** (edit the file via GitHub web, or hand you the line — the latter is smoother for non-coders).
+- [ ] Know the **Storymode Shorts** submit flow (`shorts.intostorymode.com`) so you can walk people through it in the room.
 - [ ] Have the **WiFi** sorted. Everything here is browser-and-cloud; no connection means no workshop.
 
 ## The stumbles you'll actually hit
@@ -42,5 +42,5 @@ Adjust freely; the worksheet → reskin → publish spine is the part to protect
 
 ## After the workshop
 
-- Keep the gallery as a record of the cohort.
+- Games submitted to Storymode Shorts are reviewed by a person before anything goes public — check in on any that are still pending.
 - The whole repo is reusable and tool-agnostic — the prompt library works in any AI builder, so it survives Replit changing its buttons.

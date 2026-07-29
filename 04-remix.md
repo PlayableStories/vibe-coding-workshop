@@ -2,9 +2,9 @@
 
 This is the heart of the whole workshop.
 
-A reskin changes how a game *looks*. A remix changes what it *means* — by changing a **rule**. It's the difference between repainting a house and changing what the house is *for*.
+A reskin changes how a game *looks*. A remix changes what it *means* — by finding the **expectation** the game relies on, and breaking it. It's the difference between repainting a house and changing what the house is *for*.
 
-And here's the secret: a great remix usually changes **just one rule.** Not ten. One.
+And here's the secret: a great remix usually breaks **just one expectation.** Not ten. One.
 
 ## The proof: how Half of Me was made
 
@@ -16,15 +16,15 @@ That's it. That one rule means every memory you recover is incomplete. From that
 
 That's your target today.
 
-## Step 1 — Find the rule that carries the meaning
+## Step 1 — Find the expectation the game relies on
 
-Look back at the game you reskinned. In the **[catalogue](02-pick-a-game.md)**, each game has a line called *"the mechanic that carries it."* That's your raw material. Ask the AI to be sure:
+Every game trains you to expect something without saying so: a match earns points, a locked door needs a key, more is better. Look back at the game you reskinned and find the expectation it leans on hardest. In the **[catalogue](02-pick-a-game.md)**, each game has a line called *"the mechanic that carries it."* That's your raw material. Ask the AI to be sure:
 
 > *In one sentence each, list the main rules of this game — how you score, how you win, how you lose, what the player does over and over.*
 
 Now read that list and ask the designer's question:
 
-> **"If I changed *this* rule, what would the game be saying instead?"**
+> **"What is this game training me to expect — and what would it mean if that expectation broke?"**
 
 ## Step 2 — Pick ONE rule to bend
 
