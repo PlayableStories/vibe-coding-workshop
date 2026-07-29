@@ -26,7 +26,7 @@ Thanks for coming! This takes about **2 minutes** and genuinely shapes the next 
 
 **4. Which part was most valuable to you?**
 
-☐ Mechanics as meaning ☐ Story-first / the worksheet ☐ Designing a mechanic ☐ Building with AI ☐ Sharing & reflection ☐ Other: ____________
+☐ Breaking a convention ☐ Story-first / the worksheet ☐ Designing a mechanic ☐ Building with AI ☐ Sharing & reflection ☐ Other: ____________
 
 ---
 
@@ -57,6 +57,18 @@ ____________________________________________
 **8. Want to hear about future Playable Stories events?**
 
 ☐ No thanks ☐ Yes — email: ____________________________________________
+
+---
+
+**9. If you built something today, three plain questions:**
+
+May we use your name? ☐ Yes ☐ No
+
+May we link to your game? ☐ Yes ☐ No
+
+May we quote what you told us? ☐ Yes ☐ No
+
+However you answer is entirely fine — this is the same consent asked out loud in the room, in writing, in case you'd rather answer this way.
 
 ---
 
