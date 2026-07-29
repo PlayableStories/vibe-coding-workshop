@@ -16,3 +16,16 @@ The three lists:
 - **[Fixing things](fixing-things.md)** — when something breaks, looks wrong, or you're lost
 
 > 🪄 In every prompt, the bits in `[square brackets]` are for you to fill in.
+
+## Building your own prompt
+
+Once you're comfortable copying and adapting, try writing one from scratch. A good prompt
+usually has four parts:
+
+- **Goal** — what you want the game to be about
+- **Context** — your idea, in a sentence or two
+- **Source** — what it should feel like, or what it reminds you of
+- **Expectations** — keep everything else working; change nothing I haven't asked about
+
+Put those four in a sentence or two each, and you've got a prompt as good as anything in these
+lists.
