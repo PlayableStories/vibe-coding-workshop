@@ -21,13 +21,16 @@ Open the link on your **phone**, or send it to the person next to you. Play it a
 
 That last question is the only review that matters. Not "is it polished" — *"did they feel the thing I meant?"*
 
-## Add it to the gallery
+## Submit it to Shorts
 
-Share what you made with everyone who came:
+Share what you made with everyone who comes after you:
 
-1. Open **[gallery.md](gallery.md)**.
-2. Add one line: your game's name, your name (or just a first name), your live link, and the **one sentence** of what it's about.
-3. Your facilitator will show you how to save it — or just send the line to them and they'll add it.
+1. Open **[shorts.intostorymode.com/submit](https://shorts.intostorymode.com/submit)**.
+2. Add your game's title, your live link, and the **one sentence** of what it's about.
+3. Answer the credit and consent questions however feels right to you — it's entirely your call.
+
+Do this while you're still in the room — it takes two minutes here, and much longer to chase
+by email later.
 
 ## Tell the story behind it (60 seconds)
 
