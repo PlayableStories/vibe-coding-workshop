@@ -29,8 +29,18 @@ Our sample games each do this with exactly one clear idea:
 - **Half of Me** — every match gives you only half a memory. → *When you lose your home, you keep the place or the feeling — not both.*
 - **Boardroom** — every decision pleases one group and angers another. → *Leadership is an impossible balancing act.*
 - **Office Chair Racing** — every promotion just brings faster, scarier competition. → *Climbing the ladder doesn't make you safe.*
+- **Building On** — every plan you place is permanent, and every neighbour notices. → *A home isn't a list of rooms, it's what ended up next to what.*
+- **Ballot / Waste** — a political wind you don't control bends every throw. → *The voter casts the ballot, but political performance shapes the atmosphere it has to travel through.*
 
 Notice how each one fits in a single sentence. That's the goal. If you can't say what your game is about in one sentence, it isn't ready yet — and that's what the **[worksheet](worksheet.md)** is for.
+
+## Spotting the trick
+
+Look again at that list. Every one of those games works the same way: it takes something you'd normally expect — matching earns points, a memory is whole, hard work pays off — and quietly breaks it. That broken expectation *is* the meaning. You'll practise spotting this together in the room, with a short pair exercise before you build anything: list a few ordinary game conventions, then ask what breaking each one would make a player feel.
+
+<!-- TODO: credit the facilitator and their organisation for this exercise, once permission to name them is confirmed. -->
+
+This isn't a new idea — it's close to what people who make **game poems** have been doing for years: small, expressive games built to be *felt* rather than won. The term comes from game designer Jordan Magnuson, and there's now a whole practice around it, including *Game Poems Magazine*. Playable Stories is a kindred practice, not a part of that scene — we're grateful for what it's taught us.
 
 ## The ladder you'll climb
 
@@ -40,7 +50,7 @@ You don't build from scratch. You stand on a game that already works and change 
 Keep the rules. Change the *words* and the *look*. Boardroom is about a CEO; you could make it about a head teacher, a hospital ward, a parent. The dilemmas, the art, the tone — all yours. **Most people start here, and it's plenty.**
 
 ### Rung 2 — Remix
-Change *one rule*, so the meaning shifts. This is the magic rung. Half of Me was made by taking Memory of Home and changing how matching works. One rule. A whole new feeling. We'll do this together.
+Find the expectation the game relies on, and break it. This is the magic rung. Half of Me was made by taking Memory of Home and breaking one expectation — that a matched memory is whole. One broken expectation. A whole new feeling. We'll do this together.
 
 ### Rung 3 — Rebuild
 Describe a brand-new game in plain language and let the AI build it from nothing. Ambitious, exciting, and a great thing to try once you've got the hang of the first two.
