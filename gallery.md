@@ -1,22 +1,18 @@
 # Gallery
 
-Games made in the workshop. Every one of these was built by someone who walked in as a non-coder.
+Games made in the workshop don't live in this file anymore — they're on **[Storymode
+Shorts](https://shorts.intostorymode.com)**, a public gallery of games from every Playable
+Stories workshop.
 
-Add yours — copy the line below, fill it in, and put it at the top of the list:
+## Submit yours
 
-```
-- **[Your Title]** — by [name] — _[the one sentence: what it's about]_ — [▶ play link] — (started from [which game], [reskin / remix])
-```
+1. Open **[shorts.intostorymode.com/submit](https://shorts.intostorymode.com/submit)**.
+2. Add your game's title, a link to play it, and a line or two about what it's about.
+3. You'll be asked how you'd like to be credited, and to confirm you're happy for your game to
+   be included — answer however feels right to you.
+4. A person reads every submission, so it may take a little while to appear.
 
-> New to adding it? Just hand your line to your facilitator and they'll pop it in.
-
----
-
-## This cohort
-
-<!-- Add your game above this line -->
-
-_(The first game goes here. Be the one to start the wall.)_
+> New to this? Ask your facilitator — they'll walk you through it in the room.
 
 ---
 
