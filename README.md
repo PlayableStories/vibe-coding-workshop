@@ -58,6 +58,7 @@ Run-of-show rundowns for each live session — useful as a record and a template
 | # | Rundown | When & where |
 |---|---------|--------------|
 | 01 | **[Vibe Coding Meaningful Games](workshop01-rundown.md)** | SPACE4, London · 11 Jun 2026 |
+| 02 | **[Vibe Coding Meaningful Games](workshop02-rundown.md)** | SPACE4, London · 6 Aug 2026 |
 
 ---
 
