@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playable Stories: Vibe Coding Meaningful Games</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --bg: #232838;
+    --bg-raised: #2b3146;
+    --fg: #f4f5f7;
+    --fg-dim: #b7bccb;
+    --accent: #8fe3b0;
+    --rule: #3a4160;
+    --display-font: "Space Grotesk", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    --body-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body-font);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body.print-mode{
+    overflow: visible;
+    height: auto;
+  }
+
+  .deck{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide{
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    padding: clamp(2rem, 6vw, 6rem);
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  .slide.active{
+    display: flex;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .slide{ transition: none; }
+  }
+
+  .eyebrow{
+    font-family: var(--display-font);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+    color: var(--accent);
+  }
+
+  h1, h2{
+    font-family: var(--display-font);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  h1{ font-size: clamp(2.6rem, 6vw, 5.2rem); }
+  h2{ font-size: clamp(2.1rem, 4.8vw, 4rem); }
+
+  p, li{
+    font-size: clamp(1.3rem, 2.4vw, 2rem);
+    line-height: 1.45;
+    color: var(--fg);
+    max-width: 34ch;
+  }
+
+  .dim{ color: var(--fg-dim); }
+
+  .lede{
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+    max-width: 32ch;
+  }
+
+  .small{
+    font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+    color: var(--fg-dim);
+  }
+
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+  }
+
+  ul.plain li{ max-width: 30ch; }
+
+  ol{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: rung;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85em;
+  }
+
+  ol.rungs li{
+    counter-increment: rung;
+    max-width: 40ch;
+    padding-left: 2.4em;
+    position: relative;
+  }
+
+  ol.rungs li::before{
+    content: counter(rung);
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    font-family: var(--display-font);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1em;
+  }
+
+  a{
+    color: var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover, a:focus{ color: var(--fg); }
+
+  blockquote{
+    margin: 0;
+    max-width: 36ch;
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    line-height: 1.2;
+  }
+
+  .cursor{
+    display: inline-block;
+    width: 0.5em;
+    height: 0.9em;
+    background: var(--accent);
+    vertical-align: -0.12em;
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{ animation: none; opacity: 1; }
+  }
+
+  @keyframes blink{
+    0%, 49%{ opacity: 1; }
+    50%, 100%{ opacity: 0; }
+  }
+
+  .fill{ width: 100%; }
+
+  /* Slide 6 grid of four game blocks */
+  .game-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2.5vw, 2rem);
+    width: 100%;
+    max-width: 68rem;
+  }
+
+  .game-card{
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: clamp(1rem, 1.8vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .game-card h3{
+    font-family: var(--display-font);
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    margin: 0;
+  }
+
+  .game-card h3 a{ color: var(--fg); }
+
+  .game-card p{
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    max-width: none;
+    color: var(--fg-dim);
+  }
+
+  .game-card .says{
+    font-style: italic;
+    color: var(--fg);
+  }
+
+  /* Slide 8 pair */
+  .scale-pair{
+    display: flex;
+    flex-direction: column;
+    gap: 1.4em;
+    width: 100%;
+    max-width: 46rem;
+  }
+
+  .scale-pair h3{
+    font-family: var(--display-font);
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    margin: 0 0 0.2em 0;
+  }
+
+  .scale-pair h3 a{ color: var(--fg); }
+
+  .scale-pair p{ max-width: none; }
+
+  .blank{
+    display: inline-block;
+    min-width: 5em;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .counter{
+    position: fixed;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(0.8rem, 2vw, 1.5rem);
+    font-family: var(--display-font);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    z-index: 10;
+  }
+
+  .progress{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    background: var(--accent);
+    opacity: 0.6;
+    transition: width 320ms ease;
+    z-index: 10;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress{ transition: none; }
+  }
+
+  @media (max-width: 640px){
+    .game-grid{ grid-template-columns: 1fr; }
+    h1{ font-size: clamp(2.2rem, 8vw, 3.2rem); }
+    h2{ font-size: clamp(1.8rem, 7vw, 2.6rem); }
+  }
+
+  /* Print: one slide per page */
+  @media print{
+    html, body{ overflow: visible; height: auto; background: #fff; color: #111; }
+    .counter, .progress{ display: none; }
+    .slide{
+      display: flex !important;
+      opacity: 1 !important;
+      position: relative;
+      page-break-after: always;
+      height: 100vh;
+      background: #fff;
+      color: #111;
+    }
+    .eyebrow, .cursor{ color: #444; }
+    a{ color: #111; }
+    .game-card{ background: #f4f4f4; border-color: #ccc; }
+  }
+
+  body.print-mode .slide{
+    display: flex;
+    opacity: 1;
+    position: relative;
+    page-break-after: always;
+    height: 100vh;
+  }
+
+  body.print-mode .counter,
+  body.print-mode .progress{ display: none; }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- 1 — Title -->
+  <section class="slide" data-index="1">
+    <div class="eyebrow">Playable Stories</div>
+    <h1>Vibe Coding Meaningful Games<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="dim">SPACE4, Finsbury Park · with Outlandish · 6 August 2026</p>
+    <p class="lede">You'll leave with a published, playable link to a game that's yours.</p>
+  </section>
+
+  <!-- 2 — The big idea -->
+  <section class="slide" data-index="2">
+    <div class="eyebrow">The big idea</div>
+    <h1>The mechanic is the message.</h1>
+    <p class="lede">A game's real story isn't the words on screen — it's the rules. Change the rule, change the meaning.</p>
+  </section>
+
+  <!-- 3 — Tonight -->
+  <section class="slide" data-index="3">
+    <div class="eyebrow">Tonight</div>
+    <ul class="plain">
+      <li>Introductions</li>
+      <li>Games that mean something</li>
+      <li>Break a convention</li>
+      <li>Write your one sentence</li>
+      <li>Build it with AI</li>
+      <li>Publish and share</li>
+    </ul>
+  </section>
+
+  <!-- 4 — Pick a card -->
+  <section class="slide" data-index="4">
+    <div class="eyebrow">Pick a card</div>
+    <h2>Pick one. Two minutes to write, then we'll go round.</h2>
+    <ol class="rungs">
+      <li>Something that made you angry this week.</li>
+      <li>A time you had to choose between two things you cared about.</li>
+      <li>A place, a person, or a routine you miss.</li>
+    </ol>
+    <!--
+    Set B (organisational) — swap in by replacing the <ol> above with this block:
+    <ol class="rungs">
+      <li>A rule at work that makes no sense.</li>
+      <li>Something people always misunderstand about what you do.</li>
+      <li>A moment when someone finally got it.</li>
+    </ol>
+    -->
+  </section>
+
+  <!-- 5 — Cards stay up -->
+  <section class="slide" data-index="5">
+    <div class="eyebrow">Name + your answer · about 40 seconds</div>
+    <ol class="rungs">
+      <li>Something that made you angry this week.</li>
+      <li>A time you had to choose between two things you cared about.</li>
+      <li>A place, a person, or a routine you miss.</li>
+    </ol>
+  </section>
+
+  <!-- 6 — Games that mean something -->
+  <section class="slide" data-index="6">
+    <div class="eyebrow">Games that mean something</div>
+    <div class="game-grid">
+      <div class="game-card">
+        <h3><a href="https://hcsoftware.sourceforge.net/passage/" target="_blank" rel="noopener">Passage</a></h3>
+        <p>A narrow strip. You always drift right. Take a spouse and you move at half speed but score double. Five minutes, then you die.</p>
+        <p class="says">You can't see far ahead, you can't go back, and love costs you mobility.</p>
+      </div>
+      <div class="game-card">
+        <h3><a href="https://jordanmagnuson.itch.io/loneliness" target="_blank" rel="noopener">Loneliness</a></h3>
+        <p>A small black square. Approach the others and they scatter. No goal, no ending.</p>
+        <p class="says">Reaching out is what makes them leave.</p>
+      </div>
+      <div class="game-card">
+        <h3><a href="https://en.wikipedia.org/wiki/Dumb_Ways_to_Die" target="_blank" rel="noopener">Dumb Ways to Die</a></h3>
+        <p>Cheerful cartoon deaths, a song you can't shake, then: stand behind the yellow line.</p>
+        <p class="says">A safety message people chose to share.</p>
+      </div>
+      <div class="game-card">
+        <h3><a href="https://store.steampowered.com/app/1102130/Florence/" target="_blank" rel="noopener">Florence</a></h3>
+        <p>Conversations are jigsaw pieces. Early on, many and fiddly. As the relationship settles, two pieces. Later, hard again.</p>
+        <p class="says">Talking to someone gets easier, then it doesn't.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 — Game Poems Magazine -->
+  <section class="slide" data-index="7">
+    <div class="eyebrow">A whole scene doing this</div>
+    <h2>Game Poems Magazine</h2>
+    <p>Short interactive artworks that borrow the language of videogames — not five one-offs, a whole scene.</p>
+    <p><a href="https://www.gamepoems.com/" target="_blank" rel="noopener">gamepoems.com</a></p>
+  </section>
+
+  <!-- 8 — And at our scale -->
+  <section class="slide" data-index="8">
+    <div class="eyebrow">And at our scale</div>
+    <div class="scale-pair">
+      <div>
+        <h3><a href="https://corporate-reign.vercel.app" target="_blank" rel="noopener">Boardroom</a></h3>
+        <p>Four meters, all at 50. Every decision pleases one group and angers another. <em>Leadership is an impossible balancing act.</em></p>
+      </div>
+      <div>
+        <h3><a href="https://office-race-game-lilac.vercel.app" target="_blank" rel="noopener">Office Chair Racing</a></h3>
+        <p>Pump the keys to go faster. Stop, and you're fired. Every promotion makes your rivals more aggressive. <em>Climbing the ladder doesn't make you safe.</em></p>
+      </div>
+      <p class="small">Made small, made fast, made the way you'll make yours tonight.</p>
+    </div>
+  </section>
+
+  <!-- 9 — A rule creates a feeling -->
+  <section class="slide" data-index="9">
+    <div class="eyebrow">A rule creates a feeling</div>
+    <ul class="plain">
+      <li>Move only forward, never back → <strong>regret</strong></li>
+      <li>Helping someone costs you points → <strong>sacrifice</strong></li>
+      <li>Never quite catching up → <strong>the treadmill of modern work</strong></li>
+    </ul>
+  </section>
+
+  <!-- 10 — What do games train you to expect? -->
+  <section class="slide" data-index="10">
+    <div class="eyebrow">In pairs, five minutes</div>
+    <h2>What do games train you to expect?</h2>
+    <p>A health bar goes down when you're hurt. A locked door needs a key. Your score goes up. The timer counts down. You have three lives.</p>
+  </section>
+
+  <!-- 11 — Now break one -->
+  <section class="slide" data-index="11">
+    <div class="eyebrow">In pairs, five minutes</div>
+    <h2>Now break one.</h2>
+    <p>Pick one from your list. What if it didn't work that way?</p>
+    <p class="lede">What would that make a player feel?</p>
+  </section>
+
+  <!-- 12 — You're not the first -->
+  <section class="slide" data-index="12">
+    <div class="eyebrow">You're not the first</div>
+    <p class="lede">Pill Match breaks <em>matching earns points</em>.</p>
+    <p class="lede">Memory of Home breaks <em>a matched memory is whole</em>.</p>
+  </section>
+
+  <!-- 13 — The framework -->
+  <section class="slide" data-index="13">
+    <div class="eyebrow">The framework</div>
+    <h1>Message → Experience → Mechanic</h1>
+    <p>Don't ask <em>what game should I make?</em></p>
+    <p>Ask <em>what should my audience feel?</em> — then find the rule that creates it.</p>
+  </section>
+
+  <!-- 14 — Three rungs -->
+  <section class="slide" data-index="14">
+    <div class="eyebrow">Three rungs</div>
+    <ol class="rungs">
+      <li><strong>Reskin</strong> — keep the rules, change the words and the look. Most people start here, and it's plenty.</li>
+      <li><strong>Remix</strong> — find the expectation the game relies on, and break it.</li>
+      <li><strong>Rebuild</strong> — describe a whole new game from scratch.</li>
+    </ol>
+  </section>
+
+  <!-- 15 — Your one sentence -->
+  <section class="slide" data-index="15">
+    <div class="eyebrow">Your one sentence</div>
+    <blockquote>My game is about <span class="blank"></span>, and I want the player to feel <span class="blank"></span>.</blockquote>
+    <p class="small">You wrote most of this at six o'clock.</p>
+    <p class="small"><a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/worksheet.md" target="_blank" rel="noopener">Worksheet</a></p>
+  </section>
+
+  <!-- 16 — Pick your launchpad -->
+  <section class="slide" data-index="16">
+    <div class="eyebrow">Pick your launchpad</div>
+    <h2>The game whose feeling is closest to yours.</h2>
+    <ul class="plain">
+      <li>Angry or funny about work → <strong>Boardroom</strong></li>
+      <li>Pressure and burnout → <strong>Office Chair Racing</strong></li>
+      <li>Doing the right <em>amount</em> of something → <strong>Pill Match</strong></li>
+      <li>Tender and personal → <strong>Memory of Home</strong></li>
+      <li>Reflective, about what you'd live with → <strong>Building On</strong></li>
+      <li>About a force you can't control → <strong>Ballot / Waste</strong></li>
+    </ul>
+    <p class="small"><a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/02-pick-a-game.md" target="_blank" rel="noopener">Catalogue</a></p>
+  </section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">1 / 16</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var counterEl = document.getElementById('counter');
+  var progressEl = document.getElementById('progress');
+  var current = 0;
+
+  var params = new URLSearchParams(window.location.search);
+  var printMode = params.has('print');
+
+  function render(){
+    slides.forEach(function(s, i){
+      s.classList.toggle('active', i === current);
+    });
+    counterEl.textContent = (current + 1) + ' / ' + total;
+    progressEl.style.width = (((current + 1) / total) * 100) + '%';
+  }
+
+  function goTo(i){
+    if(i < 0) i = 0;
+    if(i > total - 1) i = total - 1;
+    current = i;
+    render();
+  }
+
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  if(printMode){
+    document.body.classList.add('print-mode');
+  } else {
+    render();
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Spacebar'){
+        e.preventDefault();
+        next();
+      } else if(e.key === 'ArrowLeft'){
+        e.preventDefault();
+        prev();
+      }
+    });
+
+    document.getElementById('deck').addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
+      var w = window.innerWidth;
+      if(e.clientX < w * 0.3){
+        prev();
+      } else {
+        next();
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@
 > 📍 **SPACE4**, 113 Fonthill Road, London N4 3HH
 > 📅 **Thursday, 6 August 2026** · 🕕 **6:00 PM – 8:30 PM** (BST)
 > 🎟️ [Eventbrite](https://www.eventbrite.co.uk/e/playable-stories-vibe-coding-meaningful-games-tickets-1992993262498)
+> 🖥️ [Slide deck](https://playablestories.github.io/vibe-coding-workshop/workshop02-deck.html) (6:00–7:20)
 > 🤝 A workshop by [Into Storymode](https://intostorymode.com) / Playable Stories
 
 ---
