@@ -18,6 +18,18 @@ The aim is to arrive at something specific and meaningful enough that when you d
 
 AI is useful at every stage here, not just the build: for research, for talking an idea through, for critique. You don't need to use the same AI tool for all of it.
 
+## The workflow
+
+The whole method, in one line:
+
+> **Meaning → Playable relationship → Core mechanic → Cheapest useful test → Mini-GDD → AI build**
+
+Then, once it's playable:
+
+> **Play → Observe → Test with others → Revise (or abandon) → Add narrative and presentation → Repeat**
+
+Steps 1–6 below walk through the first line — that's the part you can do inside a workshop session. Steps 7–9 walk through the second, as a loop you keep running afterwards.
+
 ## Step 1 — Start with what the game wants to say
 
 Begin with a question, a tension, an observation, a feeling — not a game idea yet. Ask yourself:
@@ -38,6 +50,8 @@ You don't need to invent a new form of play. It's usually easier to recognise so
 
 For the memory example, this might become: *keeping one memory makes another harder to keep.* Not the exact mechanic yet — just the relationship the game should make the player feel.
 
+> **From the catalogue — Memory of Home.** The whole game rests on one sentence written before any card was built: *"A memory can be true without being complete."* That's a playable relationship, not a mechanic — it says what the player and the system are doing to each other, before either one exists on screen. ([design doc](https://github.com/PlayableStories/memory-of-home/blob/main/GDD.md))
+
 ## Step 3 — Reduce it to one core mechanic
 
 Turn the relationship into the smallest repeated interaction that could produce it:
@@ -50,6 +64,8 @@ For the memory game: *player chooses two memory cards → the game matches them 
 
 You're not designing the whole game here. You're finding its mechanical heart. A familiar mechanic with one meaningful change is often stronger than an elaborate new system.
 
+> **From the catalogue — Ballot / Waste.** The mechanic is a familiar mobile paper-toss: swipe to throw a ball into a bin. The one change is that a wind — built entirely from politicians' speeches — pushes the ball off-course, and the player has to angle their throw to compensate. The design doc is explicit that this *is* the meaning, not a metaphor bolted onto it: *"Compensation is not a workaround for the theme; compensation is the theme."* Action (swipe) → system response (wind bends the throw) → consequence (you only land the vote by aiming at where the wind will carry it, not where you meant to go). ([concept doc](https://github.com/PlayableStories/ballot-bin-game/blob/main/CONCEPT.md))
+
 ## Step 4 — Use the cheapest prototype that can answer the question
 
 Don't jump straight to the full digital build. Ask:
@@ -59,6 +75,8 @@ Don't jump straight to the full digital build. Ask:
 Some things test well on paper — cards, tokens, objects — especially matching, turn order, adjacency, trading, sequencing, placement, hidden information. Other things depend on *feel* and need a small digital test — throwing, physics, timing, movement, speed, pressure. A paper prototype won't tell you whether a toss mechanic feels good; the wobble and the force *are* the mechanic.
 
 Use the cheapest prototype that can test your actual question. Then ask: **does it produce the experience it's supposed to?** If not, change the rule — don't try to rescue a weak mechanic with more explanatory text. And if it still isn't working after a few tries, it's fine to conclude the meaning needs a different playable relationship. Go back a step rather than defend a mechanic that isn't landing.
+
+> **From the catalogue — Ballot / Waste, again.** The throw-and-wind mechanic depends entirely on *feel*, so it couldn't be tested on paper. Instead, the build order starts with the cheapest possible digital test: coloured rectangles standing in for the ball and the room, thrown on a real phone, purely to check the arc reads as depth. The prototype GDD is blunt about the order: *"Stop and check this before anything else,"* and later, *"playtest the central question... with placeholder art. If a player cannot read the wind from the room when the room is grey boxes and text, no amount of low-poly polish will fix it — it will only disguise it long enough to waste a month."* ([prototype GDD](https://github.com/PlayableStories/ballot-bin-game/blob/main/GDD-PROTOTYPE.md))
 
 ## Step 5 — Write a mini-GDD
 
@@ -71,6 +89,8 @@ Once the mechanic feels right, turn it into a small spec — not a long traditio
 - how play begins and ends
 - win, loss, or completion conditions
 - a small amount of example content
+
+> **From the catalogue — Memory of Home.** Its GDD is a good template for how small this can be: a one-paragraph concept, a scope split into a plain **Includes** / **Does not include** list, a short table defining the setup (6 objects × 4 colours, 12 cards), the match rule in one line ("valid if the two selected cards share either the same object or the same colour"), and a one-sentence description at the very end. That's the whole spec — small enough to hand to an AI and build from directly. ([design doc](https://github.com/PlayableStories/memory-of-home/blob/main/GDD.md))
 
 This is the bridge between your design thinking and what you ask the AI to build. Without it, your prompt is still "make a game about memory." With it, the AI has an actual system to implement.
 
