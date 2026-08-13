@@ -38,7 +38,7 @@ Adjust freely; the worksheet → reskin → publish spine is the part to protect
 - **The AI overshoots** — changes more than asked. Teach the undo phrases early; they're in fixing-things.
 - **Blank-page paralysis on meaning.** The worksheet prevents most of this. If someone's still stuck, ask "what annoyed you this week?" — funny/angry is a great seed.
 - **Perfectionism.** Gently redirect from "is it polished" to "did the feeling land." Polished-but-empty is the failure mode; rough-but-meaningful is the goal.
-- **Speed-runners.** Send them to Rung 3 (Rebuild) or a second game. Or make them helpers — peer teaching is gold.
+- **Speed-runners.** Send them to Rung 3 (Realise) or a second game. Or make them helpers — peer teaching is gold.
 
 ## After the workshop
 
