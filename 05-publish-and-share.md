@@ -49,7 +49,7 @@ That's a complete creative story. People will remember the *one sentence* far lo
 You came in a non-coder. You're leaving a **game designer** — someone who can take an idea that matters and turn it into something other people can play and feel.
 
 If you want to keep going:
-- Try **Rung 3 (Rebuild):** open a fresh Replit and describe a brand-new game from scratch. *"Make me a small game about [your idea]."* Then shape it with the same skills you used today.
+- Try **[Rung 3 — Realise it](06-realise.md):** start from a new idea of your own and build it into a game, using the same skills you used today.
 - Remix a different game from the **[catalogue](02-pick-a-game.md)**.
 - Keep the **[prompt library](prompts/)** bookmarked — it works for any AI builder, not just today's.
 

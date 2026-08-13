@@ -52,8 +52,8 @@ Keep the rules. Change the *words* and the *look*. Boardroom is about a CEO; you
 ### Rung 2 — Remix
 Find the expectation the game relies on, and break it. This is the magic rung. Half of Me was made by taking Memory of Home and breaking one expectation — that a matched memory is whole. One broken expectation. A whole new feeling. We'll do this together.
 
-### Rung 3 — Rebuild
-Describe a brand-new game in plain language and let the AI build it from nothing. Ambitious, exciting, and a great thing to try once you've got the hang of the first two.
+### Rung 3 — Realise
+Start from a new idea of your own, not a catalogue game, and describe it into being in plain language. Ambitious, exciting, and a great thing to try once you've got the hang of the first two. The full method is in **[Realise it](06-realise.md)**.
 
 ## Why this works without coding
 

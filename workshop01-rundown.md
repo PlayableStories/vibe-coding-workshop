@@ -108,7 +108,7 @@ Don't ask *"What game should I make?"* Ask *"What should my audience feel or exp
 **The ladder you'll climb today:**
 1. **Reskin** — keep the rules, change the words & look. *Most people start here, and it's plenty.*
 2. **Remix** — change **one rule**, so the meaning shifts. The magic rung.
-3. **Rebuild** — describe a whole new game from scratch. If you're flying.
+3. **Realise** — describe a whole new game from a new idea. If you're flying.
 
 ---
 
@@ -185,7 +185,7 @@ This is the hands-on heart of the session. We'll go together at the start, then 
 ### 8:20 · Closing & Next Steps (10 mins)
 
 * All the materials are yours to keep — the [prompt library](prompts/) works in any AI builder, not just Replit.
-* Keep going: try **Rung 3 (Rebuild)** from a blank Replit, or remix a different catalogue game.
+* Keep going: try **Rung 3 (Realise)** from a blank Replit, or remix a different catalogue game.
 * Q&A and networking.
 
 #### 📋 Before you go — two minutes of feedback

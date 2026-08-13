@@ -31,7 +31,7 @@ You'll climb a small ladder. Most people reach the second rung in one session �
 |------|------|-----------------|---------|
 | 1 | **Reskin** | The words and the look. The story on top. | Turn "Boardroom" into a satire of *your* industry |
 | 2 | **Remix** | One *rule*, so the meaning shifts | Turn "match 3" into "every match costs you something" |
-| 3 | **Rebuild** | Everything — describe a new game from scratch | "Make me a game about waiting for a bus that never comes" |
+| 3 | **Realise** | Everything — describe a new game from a new idea | "Make me a game about waiting for a bus that never comes" |
 
 ---
 
@@ -43,6 +43,7 @@ You'll climb a small ladder. Most people reach the second rung in one session �
 4. **[Reskin it](03-reskin.md)** — make it yours (Rung 1)
 5. **[Remix it](04-remix.md)** — make it mean something new (Rung 2)
 6. **[Publish & share](05-publish-and-share.md)** — get a link, show the room
+7. **[Realise it](06-realise.md)** — build a brand-new game from a new idea (Rung 3)
 
 Along the way:
 - 🗂 **[Prompt library](prompts/)** — copy-paste sentences that get the AI to do what you want
