@@ -43,7 +43,9 @@ You'll climb a small ladder. Most people reach the second rung in one session �
 4. **[Reskin it](03-reskin.md)** — make it yours (Rung 1)
 5. **[Remix it](04-remix.md)** — make it mean something new (Rung 2)
 6. **[Publish & share](05-publish-and-share.md)** — get a link, show the room
-7. **[Realise it](06-realise.md)** — build a brand-new game from a new idea (Rung 3)
+
+When you're ready to go further:
+- 🌱 **[Realise it](06-realise.md)** — build a brand-new game from a new idea (Rung 3)
 
 Along the way:
 - 🗂 **[Prompt library](prompts/)** — copy-paste sentences that get the AI to do what you want
