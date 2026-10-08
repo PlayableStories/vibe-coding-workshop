@@ -65,6 +65,10 @@ And at our scale, made the way you'll make yours tonight:
 - **Boardroom** ([play ▶](https://corporate-reign.vercel.app)) — four meters, all at 50; every decision pleases one group and angers another. *Leadership is an impossible balancing act.*
 - **Office Chair Racing** ([play ▶](https://office-race-game-lilac.vercel.app)) — pump the keys to go faster; stop, and you're fired. *Climbing the ladder doesn't make you safe.*
 
+And one made with a quantum computer, at a hackathon last week:
+
+- **Faded Passport** ([play ▶](https://faded-passport.vercel.app)) — a border-crossing game, turned around: you're the traveller coming home after years away, and the longer you've been gone, the more your passport photo dissolves into a picture of home. *The longer you're away, the less home recognises you.* Made by William at Moth Hack 2026.
+
 A rule creates a feeling:
 
 - Move only *forward*, never back → **regret**
@@ -141,6 +145,8 @@ What the conversation sounds like:
 - *"Write this up as a build prompt for Claude Code. One HTML file, the smallest playable version."*
 
 The thinking happens in the chat. The prompt is what you carry across. → More in **[Realise](06-realise.md)**
+
+Want to see a real build prompt? Here's the one behind Faded Passport: **[BRIEF.md](https://github.com/WWStoryMode/moth-hack-2026/blob/main/apps/faded-passport/BRIEF.md)**. The opening sections, "The piece" and "Flow", are the part you'd write yourself; the API detail underneath came later.
 
 **Check-in — which rung are you on?**
 
