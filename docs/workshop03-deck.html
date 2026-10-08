@@ -623,7 +623,7 @@
       <li>"I want to make a game about ____. Before we build anything, ask me questions."</li>
       <li>"What familiar game is closest to this feeling?"</li>
       <li>"Where does this idea fall apart? Push back."</li>
-      <li>"Write this up as a build prompt for Claude Code. One HTML file, the smallest playable version."</li>
+      <li>"Write this up as a build prompt for Claude Code. One HTML file or a static site, the smallest playable version."</li>
     </ul>
     <p class="small">The thinking happens in the chat. The prompt is what you carry across. <a href="https://github.com/WWStoryMode/moth-hack-2026/blob/main/apps/faded-passport/BRIEF.md" target="_blank" rel="noopener">See a real one</a></p>
   </section>
@@ -735,9 +735,9 @@
     document.getElementById('deck').addEventListener('click', function(e){
       if(e.target.closest('a')) return;
       var w = window.innerWidth;
-      if(e.clientX < w * 0.3){
+      if(e.clientX < w * 0.1){
         prev();
-      } else {
+      } else if(e.clientX > w * 0.9){
         next();
       }
     });

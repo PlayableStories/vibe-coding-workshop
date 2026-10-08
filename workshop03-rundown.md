@@ -143,7 +143,7 @@ What the conversation sounds like:
 - *"I want to make a game about ____. Before we build anything, ask me questions."*
 - *"What familiar game is closest to this feeling?"*
 - *"Where does this idea fall apart? Push back."*
-- *"Write this up as a build prompt for Claude Code. One HTML file, the smallest playable version."*
+- *"Write this up as a build prompt for Claude Code. One HTML file or a static site, the smallest playable version."*
 
 The thinking happens in the chat. The prompt is what you carry across. → More in **[Realise](06-realise.md)**
 
