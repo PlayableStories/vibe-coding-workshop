@@ -27,9 +27,10 @@ Welcome! Over the next two and a half hours you'll make a small browser game tha
 | 6:10 | Introductions — pick a card |
 | 6:20 | Games that mean something |
 | 6:35 | **Activity 1 — Your one sentence** |
-| 6:45 | **Activity 2 — Map it to a mechanic** |
-| 7:00 | **Activity 3 — Build with AI** |
-| 8:05 | Publish, share & reflect |
+| 6:40 | **Activity 2 — Map it to a mechanic** |
+| 6:50 | **Activity 3 — Build with AI** |
+| 7:35 | Publish, share & reflect |
+| 7:50 | Make your own game or ask questions |
 | 8:20 | Closing & next steps |
 | 8:30 | Finish |
 
@@ -85,7 +86,7 @@ Don't ask *"What game should I make?"* Ask *"What should my audience feel?"* —
 
 ---
 
-## Activity 1 · 6:35 — Your One Sentence (10 mins)
+## Activity 1 · 6:35 — Your One Sentence (5 mins)
 
 Open the **[worksheet](worksheet.md)** (paper or phone) and finish one sentence:
 
@@ -95,7 +96,7 @@ You wrote most of this at 6:10. Say it out loud to a neighbour — saying it rev
 
 ---
 
-## Activity 2 · 6:45 — Map It to a Mechanic (15 mins)
+## Activity 2 · 6:40 — Map It to a Mechanic (10 mins)
 
 Find something players already know how to do — matching, throwing, sorting, placing, racing, hiding, choosing, balancing — then change one part of it.
 
@@ -116,7 +117,7 @@ Not sure where to start? The **[catalogue](02-pick-a-game.md)** has six games to
 
 ---
 
-## Activity 3 · 7:00 — Build with AI (65 mins)
+## Activity 3 · 6:50 — Build with AI (45 mins)
 
 The hands-on heart of the session. Facilitators float throughout — wave us over any time.
 
@@ -160,7 +161,7 @@ Getting a first one working is a finished game.
 
 ---
 
-### 8:05 · Publish, Share & Reflect (15 mins)
+### 7:35 · Publish, Share & Reflect (15 mins)
 
 **Publish:**
 
@@ -187,6 +188,17 @@ Three plain questions for anyone who built something today — the same ones on 
 However you answer is entirely fine.
 
 **Reflect:** What surprised you? How could this apply in your organisation or community?
+
+---
+
+### 7:50 · Make Your Own Game or Ask Questions (30 mins)
+
+Your time, your choice:
+
+- **Keep building.** Change one more rule, try the next rung, or start a second game from a new sentence. Publish again when you're happy.
+- **Ask questions.** About your game, the tools, or taking this back to your organisation or community. Wave a facilitator over.
+
+→ **[Prompt library](prompts/)** · **[Fixing things](prompts/fixing-things.md)** · **[Realise](06-realise.md)**
 
 ---
 
