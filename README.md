@@ -46,6 +46,7 @@ You'll climb a small ladder. Most people reach the second rung in one session �
 
 When you're ready to go further:
 - 🌱 **[Realise it](06-realise.md)** — build a brand-new game from a new idea (Rung 3)
+- 🧭 **[The workflow](workflow.md)** — the six stages behind Realise, on one page
 
 Along the way:
 - 🗂 **[Prompt library](prompts/)** — copy-paste sentences that get the AI to do what you want
