@@ -310,6 +310,7 @@
     max-width: 76rem;
     counter-reset: step;
   }
+  .flow.six{ grid-template-columns: repeat(3, 1fr); row-gap: clamp(1rem, 2.4vw, 1.8rem); }
   .flow-step{
     counter-increment: step;
     border-top: 3px solid var(--rule);
@@ -360,10 +361,10 @@
   }
 
   @media (max-width: 900px){
-    .flow{ grid-template-columns: repeat(2, 1fr); }
+    .flow, .flow.six{ grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px){
-    .flow{ grid-template-columns: 1fr; }
+    .flow, .flow.six{ grid-template-columns: 1fr; }
   }
   @media print{
     table.map td, table.map th{ border-color: #ccc; }
@@ -587,33 +588,43 @@
     <p class="small"><a href="https://github.com/PlayableStories/vibe-coding-workshop/tree/main/prompts" target="_blank" rel="noopener">Prompt library</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/prompts/fixing-things.md" target="_blank" rel="noopener">Fixing things</a></p>
   </section>
 
-  <!-- 16 — From scratch: the workflow -->
+  <!-- 16 — From scratch: the six stages -->
   <section class="slide" data-index="16">
     <div class="eyebrow">From scratch, the way I do it</div>
     <h2>Talk first. Build second.</h2>
-    <div class="flow">
+    <div class="flow six">
       <div class="flow-step">
-        <h3>Talk it through</h3>
-        <p class="tool">Claude.ai</p>
-        <p>Explain the idea. Let it ask questions and push back. No building yet.</p>
+        <h3>Creative intention</h3>
+        <p class="tool">You</p>
+        <p>What should the player feel? Find a relationship that could carry it.</p>
       </div>
       <div class="flow-step">
-        <h3>Settle the mechanic</h3>
-        <p class="tool">Claude.ai</p>
-        <p>Player action, system response, consequence. One sentence each.</p>
+        <h3>Look at what's been done</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Find references. Ask it to push back. Note what you're unsure of.</p>
       </div>
       <div class="flow-step">
-        <h3>Write the prompt</h3>
-        <p class="tool">Claude.ai</p>
-        <p>Ask it to turn the conversation into a build prompt: the smallest playable version.</p>
+        <h3>The smallest playable version</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Player action, system response, consequence. Test it the cheapest way.</p>
       </div>
       <div class="flow-step">
-        <h3>Build and play</h3>
-        <p class="tool">Claude Code</p>
-        <p>Hand over the prompt. Play what comes back. Change one thing at a time.</p>
+        <h3>Decide where it runs</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Say where it's played and what it needs. Ask for the simplest way.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Write the brief</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Turn the conversation into a build prompt. Check it still sounds like your game.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Build, play and change</h3>
+        <p class="tool">Claude Code builds, you judge</p>
+        <p>Hand over the brief. Play what comes back. Change one thing at a time.</p>
       </div>
     </div>
-    <p class="small">One group builds from scratch with me tonight, live.</p>
+    <p class="small">One group builds from scratch with me tonight, live. <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/workflow.md" target="_blank" rel="noopener">The six stages on one page</a></p>
   </section>
 
   <!-- 17 — What the conversation sounds like -->
