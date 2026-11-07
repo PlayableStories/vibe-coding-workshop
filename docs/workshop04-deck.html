@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playable Stories: Vibe Coding Meaningful Games</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --bg: #232838;
+    --bg-raised: #2b3146;
+    --fg: #f4f5f7;
+    --fg-dim: #b7bccb;
+    --accent: #8fe3b0;
+    --rule: #3a4160;
+    --display-font: "Space Grotesk", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    --body-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body-font);
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body.print-mode{
+    overflow: visible;
+    height: auto;
+  }
+
+  .deck{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slide{
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    padding: clamp(2rem, 6vw, 6rem);
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  .slide.active{
+    display: flex;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .slide{ transition: none; }
+  }
+
+  .eyebrow{
+    font-family: var(--display-font);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+    color: var(--accent);
+  }
+
+  h1, h2{
+    font-family: var(--display-font);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  h1{ font-size: clamp(2.6rem, 6vw, 5.2rem); }
+  h2{ font-size: clamp(2.1rem, 4.8vw, 4rem); }
+
+  p, li{
+    font-size: clamp(1.3rem, 2.4vw, 2rem);
+    line-height: 1.45;
+    color: var(--fg);
+    max-width: 34ch;
+  }
+
+  .dim{ color: var(--fg-dim); }
+
+  .lede{
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+    max-width: 32ch;
+  }
+
+  .small{
+    font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+    color: var(--fg-dim);
+  }
+
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+  }
+
+  ul.plain li{ max-width: 30ch; }
+
+  ol{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: rung;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85em;
+  }
+
+  ol.rungs li{
+    counter-increment: rung;
+    max-width: 40ch;
+    padding-left: 2.4em;
+    position: relative;
+  }
+
+  ol.rungs li::before{
+    content: counter(rung);
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    font-family: var(--display-font);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1em;
+  }
+
+  a{
+    color: var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover, a:focus{ color: var(--fg); }
+
+  blockquote{
+    margin: 0;
+    max-width: 36ch;
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    line-height: 1.2;
+  }
+
+  .cursor{
+    display: inline-block;
+    width: 0.5em;
+    height: 0.9em;
+    background: var(--accent);
+    vertical-align: -0.12em;
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{ animation: none; opacity: 1; }
+  }
+
+  @keyframes blink{
+    0%, 49%{ opacity: 1; }
+    50%, 100%{ opacity: 0; }
+  }
+
+  .fill{ width: 100%; }
+
+  /* Slide 6 grid of four game blocks */
+  .game-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2.5vw, 2rem);
+    width: 100%;
+    max-width: 68rem;
+  }
+
+  .game-card{
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: clamp(1rem, 1.8vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .game-card h3{
+    font-family: var(--display-font);
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    margin: 0;
+  }
+
+  .game-card h3 a{ color: var(--fg); }
+
+  .game-card p{
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    max-width: none;
+    color: var(--fg-dim);
+  }
+
+  .game-card .says{
+    font-style: italic;
+    color: var(--fg);
+  }
+
+  /* Slide 8 pair */
+  .scale-pair{
+    display: flex;
+    flex-direction: column;
+    gap: 1.4em;
+    width: 100%;
+    max-width: 46rem;
+  }
+
+  .scale-pair h3{
+    font-family: var(--display-font);
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    margin: 0 0 0.2em 0;
+  }
+
+  .scale-pair h3 a{ color: var(--fg); }
+
+  .scale-pair p{ max-width: none; }
+
+  .blank{
+    display: inline-block;
+    min-width: 5em;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .counter{
+    position: fixed;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(0.8rem, 2vw, 1.5rem);
+    font-family: var(--display-font);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    z-index: 10;
+  }
+
+  .progress{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    background: var(--accent);
+    opacity: 0.6;
+    transition: width 320ms ease;
+    z-index: 10;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress{ transition: none; }
+  }
+
+  @media (max-width: 640px){
+    .game-grid{ grid-template-columns: 1fr; }
+    h1{ font-size: clamp(2.2rem, 8vw, 3.2rem); }
+    h2{ font-size: clamp(1.8rem, 7vw, 2.6rem); }
+  }
+
+
+  /* Mapping table */
+  table.map{
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 52rem;
+    font-size: clamp(1.05rem, 1.9vw, 1.5rem);
+  }
+  table.map th{
+    text-align: left;
+    font-family: var(--display-font);
+    font-weight: 500;
+    color: var(--fg-dim);
+    padding: 0 1em 0.5em 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  table.map td{
+    padding: 0.55em 1em 0.55em 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  table.map td:first-child{ color: var(--fg-dim); width: 40%; }
+
+  /* Claude.ai to Claude Code workflow */
+  .flow{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.8rem, 2vw, 1.6rem);
+    width: 100%;
+    max-width: 76rem;
+    counter-reset: step;
+  }
+  .flow.six{ grid-template-columns: repeat(3, 1fr); row-gap: clamp(1rem, 2.4vw, 1.8rem); }
+  .flow-step{
+    counter-increment: step;
+    border-top: 3px solid var(--rule);
+    padding-top: 0.8em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+  }
+  .flow-step:last-child{ border-top-color: var(--accent); }
+  .flow-step h3{
+    font-family: var(--display-font);
+    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+    margin: 0;
+  }
+  .flow-step h3::before{
+    content: counter(step) "  ";
+    color: var(--accent);
+  }
+  .flow-step p{
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    max-width: none;
+    color: var(--fg-dim);
+    margin: 0;
+  }
+  .flow-step p.tool{
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  ul.asks li{
+    max-width: 44ch;
+    font-size: clamp(1.15rem, 2vw, 1.65rem);
+    padding-left: 1em;
+    border-left: 3px solid var(--rule);
+  }
+
+  .feedback{
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    flex-wrap: wrap;
+  }
+  .feedback img{
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    image-rendering: pixelated;
+  }
+
+  /* Workshop 04: timetables keep the time column narrow */
+  table.map.times td:first-child{ width: 5.5em; }
+
+  /* Workshop 04: the three studio modes, lettered A/B/C */
+  .flow.three{ grid-template-columns: repeat(3, 1fr); }
+  .flow.three .flow-step{ border-top-color: var(--accent); }
+  .flow.three .flow-step h3::before{ content: counter(step, upper-alpha) "  "; }
+
+  /* Workshop 04: a short excerpt from a real build prompt */
+  pre.excerpt{
+    margin: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    background: var(--bg-raised);
+    border-left: 3px solid var(--accent);
+    padding: 1em 1.2em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+    line-height: 1.5;
+    color: var(--fg);
+    white-space: pre-wrap;
+  }
+  @media print{
+    pre.excerpt{ background: none; border-left-color: #ccc; color: #111; }
+  }
+
+  @media (max-width: 900px){
+    .flow, .flow.six, .flow.three{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px){
+    .flow, .flow.six, .flow.three{ grid-template-columns: 1fr; }
+  }
+  @media print{
+    table.map td, table.map th{ border-color: #ccc; }
+    .flow-step{ border-top-color: #ccc; }
+    .flow-step p.tool{ color: #111; }
+  }
+
+  /* Print: one slide per page */
+  @media print{
+    html, body{ overflow: visible; height: auto; background: #fff; color: #111; }
+    .counter, .progress{ display: none; }
+    .slide{
+      display: flex !important;
+      opacity: 1 !important;
+      position: relative;
+      page-break-after: always;
+      height: 100vh;
+      background: #fff;
+      color: #111;
+    }
+    .eyebrow, .cursor{ color: #444; }
+    a{ color: #111; }
+    .game-card{ background: #f4f4f4; border-color: #ccc; }
+  }
+
+  body.print-mode .slide{
+    display: flex;
+    opacity: 1;
+    position: relative;
+    page-break-after: always;
+    height: 100vh;
+  }
+
+  body.print-mode .counter,
+  body.print-mode .progress{ display: none; }
+</style>
+</head>
+<body>
+
+<!--
+  Workshop 04 deck (8 December 2026). Adaptive format: the studio modes are alternatives.
+  Keys: arrows / space = next & previous · F = fullscreen
+        A = Mode A (Play & Discuss) · B = Mode B (Co-create) · C = Mode C (Build & Experiment)
+        S = Showcase (shared closing)
+  Add ?print to the URL to lay out every slide for printing.
+-->
+
+<div class="deck" id="deck">
+
+  <!-- ============================================================
+       OPENING (shared) · 18:00 – 18:40
+       ============================================================ -->
+
+  <!-- 1 — Title -->
+  <section class="slide" data-index="1">
+    <div class="eyebrow">Playable Stories</div>
+    <h1>Vibe Coding Meaningful Games<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="dim">SPACE4, Finsbury Park · 8 December 2026</p>
+    <p class="lede">Play, talk, make. Tonight there's more than one way to make a game that means something.</p>
+  </section>
+
+  <!-- 2 — The big idea -->
+  <section class="slide" data-index="2">
+    <div class="eyebrow">The big idea</div>
+    <h1>The mechanic is the message.</h1>
+    <p class="lede">A game's real story isn't the words on screen — it's the rules. Change the rule, change the meaning.</p>
+  </section>
+
+  <!-- 3 — Tonight -->
+  <section class="slide" data-index="3">
+    <div class="eyebrow">Tonight</div>
+    <ul class="plain">
+      <li><strong>Together</strong> — introductions, play some games, talk about them</li>
+      <li><strong>Studio</strong> — play &amp; discuss, co-create, or build &amp; experiment</li>
+      <li><strong>Together</strong> — show what you made or discovered</li>
+    </ul>
+    <p class="small">A conversation, a paper prototype or a playable game are all good outcomes. You don't need to code.</p>
+  </section>
+
+  <!-- 4 — Pick a card -->
+  <section class="slide" data-index="4">
+    <div class="eyebrow">Pick a card</div>
+    <h2>Pick one, then we'll go round.</h2>
+    <ol class="rungs">
+      <li>Something that made you angry this week.</li>
+      <li>A time you had to choose between two things you cared about.</li>
+      <li>A place, a person, or a routine you miss.</li>
+    </ol>
+    <p class="small">And: what would you most like to do tonight — <strong>talk</strong> about games, <strong>make one together</strong>, or <strong>build your own</strong>?</p>
+  </section>
+
+  <!-- 5 — Cards stay up -->
+  <section class="slide" data-index="5">
+    <div class="eyebrow">Name + your answer · about 40 seconds</div>
+    <ol class="rungs">
+      <li>Something that made you angry this week.</li>
+      <li>A time you had to choose between two things you cared about.</li>
+      <li>A place, a person, or a routine you miss.</li>
+    </ol>
+    <p class="small">Talk, make together, or build?</p>
+  </section>
+
+  <!-- 6 — Let's play -->
+  <section class="slide" data-index="6">
+    <div class="eyebrow">Let's play · a few minutes each</div>
+    <div class="game-grid">
+      <div class="game-card">
+        <h3><a href="https://corporate-reign.vercel.app" target="_blank" rel="noopener">Boardroom</a></h3>
+        <p>Four meters, all at 50. Every decision pleases one group and angers another.</p>
+        <p class="says">Leadership is an impossible balancing act.</p>
+      </div>
+      <div class="game-card">
+        <h3><a href="https://office-race-game-lilac.vercel.app" target="_blank" rel="noopener">Office Chair Racing</a></h3>
+        <p>Pump the keys to go faster. Stop, and you're fired.</p>
+        <p class="says">Climbing the ladder doesn't make you safe.</p>
+      </div>
+      <div class="game-card">
+        <h3><a href="https://faded-passport.vercel.app" target="_blank" rel="noopener">Faded Passport</a></h3>
+        <p>You're the traveller coming home. The longer you've been away, the more your passport photo dissolves into a picture of home.</p>
+        <p class="says">The longer you're away, the less home recognises you.</p>
+      </div>
+      <div class="game-card">
+        <h3><a href="https://playablestories.github.io/window-seat/" target="_blank" rel="noopener">Window Seat</a></h3>
+        <p>Watch the clouds from a plane window. Catch the ones carrying something faint inside.</p>
+        <p class="says">Co-created at a previous Playable Stories workshop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 — A rule creates a feeling -->
+  <section class="slide" data-index="7">
+    <div class="eyebrow">A rule creates a feeling</div>
+    <h2>What did you do? What did it make you feel? Which rule caused it?</h2>
+    <ul class="plain">
+      <li>Move only forward, never back → <strong>regret</strong></li>
+      <li>Helping someone costs you points → <strong>sacrifice</strong></li>
+      <li>Never quite catching up → <strong>the treadmill of modern work</strong></li>
+    </ul>
+  </section>
+
+  <!-- 8 — The framework -->
+  <section class="slide" data-index="8">
+    <div class="eyebrow">The framework</div>
+    <h2>Intention → Player Experience → Action → System Response → Consequence</h2>
+    <p>Don't ask <em>what game should I make?</em></p>
+    <p>Ask <em>what should a player feel?</em> — then find the action, and the response, that creates it.</p>
+  </section>
+
+  <!-- 9 — The framework, on Boardroom -->
+  <section class="slide" data-index="9">
+    <div class="eyebrow">The framework, on Boardroom</div>
+    <table class="map">
+      <tbody>
+        <tr><td>Intention</td><td>Show that leadership is an impossible balancing act</td></tr>
+        <tr><td>Player experience</td><td>Constant, uncomfortable trade-offs</td></tr>
+        <tr><td>Action</td><td>Swipe left or right on a decision</td></tr>
+        <tr><td>System response</td><td>Four meters move, some up and some down</td></tr>
+        <tr><td>Consequence</td><td>Push any meter too far and it all collapses, so every later choice gets harder</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 10 — Three things to keep in mind -->
+  <section class="slide" data-index="10">
+    <div class="eyebrow">Three things to keep in mind</div>
+    <ul class="plain">
+      <li><strong>You design, AI assists.</strong> The ideas and decisions are yours.</li>
+      <li><strong>A working game isn't automatically a meaningful one.</strong> Does it say what you meant?</li>
+      <li><strong>Playtesting is part of making.</strong> Watch someone else play.</li>
+    </ul>
+  </section>
+
+  <!-- 11 — Choose tonight's direction -->
+  <section class="slide" data-index="11">
+    <div class="eyebrow">Choose tonight's direction</div>
+    <h2>Three ways to spend the studio.</h2>
+    <div class="flow three">
+      <div class="flow-step">
+        <h3>Play &amp; Discuss</h3>
+        <p class="tool">Stories, critical play, game design</p>
+        <p>Dig into the games, remix a rule in pairs, test it on paper.</p>
+        <p>You'll leave with a concept, a rule remix or a paper prototype.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Co-create Together</h3>
+        <p class="tool">One game, made as a group</p>
+        <p>Agree an intention, write the spec, build it together with an AI coding agent.</p>
+        <p>You'll leave with one shared playable prototype, where feasible.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Build &amp; Experiment</h3>
+        <p class="tool">Hands-on with AI</p>
+        <p>Write a spec, watch a live demo, build on your own or in a pair.</p>
+        <p>You'll leave with your own playable prototype.</p>
+      </div>
+    </div>
+    <p class="small">One mode, or small groups doing different ones. You can change your mind.</p>
+  </section>
+
+  <!-- 12 — Mini Game Spec -->
+  <section class="slide" data-index="12">
+    <div class="eyebrow">The Mini Game Spec · every mode uses it</div>
+    <ol class="rungs">
+      <li><strong>Intention</strong> — what should the player feel, notice, question or understand?</li>
+      <li><strong>Player action</strong> — what does the player do?</li>
+      <li><strong>System response</strong> — what happens because of that action?</li>
+      <li><strong>Consequence</strong> — how does that change what comes next?</li>
+      <li><strong>Player flow</strong> — how does it begin, develop and end?</li>
+      <li><strong>Scope</strong> — what's the smallest version worth testing?</li>
+    </ol>
+    <p class="small">On paper, out loud, or as the start of a prompt. <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/worksheet.md" target="_blank" rel="noopener">Worksheet</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/workshop04-rundown.md#the-mini-game-spec" target="_blank" rel="noopener">Rundown</a></p>
+  </section>
+
+  <!-- ============================================================
+       MODE A — Play & Discuss · press A to jump here
+       ============================================================ -->
+
+  <!-- 13 — Mode A timetable -->
+  <section class="slide" data-index="13" data-jump="a">
+    <div class="eyebrow">Mode A · Play &amp; Discuss</div>
+    <table class="map times">
+      <tbody>
+        <tr><td>18:40</td><td>Deep discussion of the games we played</td></tr>
+        <tr><td>19:05</td><td>Remix a meaningful mechanic in pairs</td></tr>
+        <tr><td>19:30</td><td>Paper prototyping and playful testing</td></tr>
+        <tr><td>19:55</td><td>Exchange ideas and iterate</td></tr>
+      </tbody>
+    </table>
+    <p class="small">You'll leave with a game concept, a rule remix or a paper prototype.</p>
+  </section>
+
+  <!-- 14 — Deep discussion -->
+  <section class="slide" data-index="14">
+    <div class="eyebrow">Deep discussion</div>
+    <ul class="asks">
+      <li>Where did the game make you complicit, or make you choose?</li>
+      <li>What would change if one rule were different?</li>
+      <li>What does the game leave out, and why might that matter?</li>
+    </ul>
+  </section>
+
+  <!-- 15 — Pair remix -->
+  <section class="slide" data-index="15">
+    <div class="eyebrow">Pair remix · change one rule</div>
+    <blockquote>Now the player <span class="blank"></span>,<br>the game responds by <span class="blank"></span>,<br>so it's really about <span class="blank"></span>.</blockquote>
+    <p class="small">Start from tonight's games or the <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/02-pick-a-game.md" target="_blank" rel="noopener">catalogue</a>. More in <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/04-remix.md" target="_blank" rel="noopener">Remix</a>.</p>
+  </section>
+
+  <!-- 16 — Paper prototype and swap -->
+  <section class="slide" data-index="16">
+    <div class="eyebrow">Paper prototype, then swap</div>
+    <ol class="rungs">
+      <li>Make it playable on the table: cards, dice, tokens, sticky notes, a sketch.</li>
+      <li>One person plays. Another is "the computer" and applies the rules.</li>
+      <li>Swap with another pair. Play theirs without being told what it's about.</li>
+      <li>Tell them what you experienced. They change one rule.</li>
+    </ol>
+    <p class="small">Keep it small: one action, one response, one consequence.</p>
+  </section>
+
+  <!-- ============================================================
+       MODE B — Co-create Together · press B to jump here
+       ============================================================ -->
+
+  <!-- 17 — Mode B timetable -->
+  <section class="slide" data-index="17" data-jump="b">
+    <div class="eyebrow">Mode B · Co-create Together</div>
+    <table class="map times">
+      <tbody>
+        <tr><td>18:40</td><td>Choose a shared idea and intention</td></tr>
+        <tr><td>18:55</td><td>Define the mechanics and the Mini Game Spec</td></tr>
+        <tr><td>19:15</td><td>Build together with an AI coding agent</td></tr>
+        <tr><td>19:50</td><td>Playtest, discuss and revise</td></tr>
+      </tbody>
+    </table>
+    <p class="small">You'll leave with one shared playable prototype, where feasible. A clear spec counts too.</p>
+  </section>
+
+  <!-- 18 — Window Seat as a Mini Game Spec -->
+  <section class="slide" data-index="18">
+    <div class="eyebrow">A real one · <a href="https://playablestories.github.io/window-seat/" target="_blank" rel="noopener">Window Seat</a></div>
+    <table class="map">
+      <tbody>
+        <tr><td>Intention</td><td><em>Play it first. What do you think it's about?</em></td></tr>
+        <tr><td>Player action</td><td>Raise the shade. Click clouds; catch the ones with something faint inside.</td></tr>
+        <tr><td>System response</td><td>The object grows and floats into a room taking shape in the sky. Miss it, and it comes back clearer.</td></tr>
+        <tr><td>Consequence</td><td>The room fills, piece by piece. Then a reflection of the passenger sits at the table.</td></tr>
+        <tr><td>Player flow</td><td>Shade up → clouds → five objects → someone sits down → shade down</td></tr>
+        <tr><td>Scope</td><td>One HTML file, no libraries, playable within 15 minutes</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Made in one evening by three people at a previous workshop.</p>
+  </section>
+
+  <!-- 19 — From idea to prompt -->
+  <section class="slide" data-index="19">
+    <div class="eyebrow">From idea to prompt</div>
+    <pre class="excerpt">Build a minimum playable prototype of a small
+point-and-click game called "Window Seat".
+Constraints: a single index.html file, plain
+JavaScript and CSS, no libraries, no build step.
+Aim for something I can play within 15 minutes.
+
+States, in this order: title, settle, drift, hint,
+transform, join, finale, end.</pre>
+    <p class="small">The scene, the states, what each click does, how it ends — in plain words. <a href="https://github.com/PlayableStories/window-seat/blob/main/Original-Prompt.md" target="_blank" rel="noopener">Read the whole prompt</a></p>
+  </section>
+
+  <!-- 20 — How we co-create -->
+  <section class="slide" data-index="20">
+    <div class="eyebrow">How we co-create</div>
+    <h2>The group decides.</h2>
+    <ul class="plain">
+      <li><strong>Intention keeper</strong> — "does this still say what we meant?"</li>
+      <li><strong>Playtester</strong> — plays each version fresh, says what they notice</li>
+      <li><strong>Prompter</strong> — types the group's decisions. Take turns.</li>
+    </ul>
+    <p class="small">Play every version before asking for changes. Change one thing at a time.</p>
+  </section>
+
+  <!-- 21 — The six stages -->
+  <section class="slide" data-index="21">
+    <div class="eyebrow">From scratch, the way I do it</div>
+    <h2>Talk first. Build second.</h2>
+    <div class="flow six">
+      <div class="flow-step">
+        <h3>Creative intention</h3>
+        <p class="tool">You</p>
+        <p>What should the player feel? Find a relationship that could carry it.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Look at what's been done</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Find references. Ask it to push back. Note what you're unsure of.</p>
+      </div>
+      <div class="flow-step">
+        <h3>The smallest playable version</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Player action, system response, consequence. Test it the cheapest way.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Decide where it runs</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Say where it's played and what it needs. Ask for the simplest way.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Write the brief</h3>
+        <p class="tool">You + Claude.ai</p>
+        <p>Turn the conversation into a build prompt. Check it still sounds like your game.</p>
+      </div>
+      <div class="flow-step">
+        <h3>Build, play and change</h3>
+        <p class="tool">Claude Code builds, you judge</p>
+        <p>Hand over the brief. Play what comes back. Change one thing at a time.</p>
+      </div>
+    </div>
+    <p class="small"><a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/workflow.md" target="_blank" rel="noopener">The six stages on one page</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/06-realise.md" target="_blank" rel="noopener">Realise</a></p>
+  </section>
+
+  <!-- ============================================================
+       MODE C — Build & Experiment · press C to jump here
+       ============================================================ -->
+
+  <!-- 22 — Mode C timetable + build loop -->
+  <section class="slide" data-index="22" data-jump="c">
+    <div class="eyebrow">Mode C · Build &amp; Experiment</div>
+    <table class="map times">
+      <tbody>
+        <tr><td>18:40</td><td>Choose an idea and write a Mini Game Spec</td></tr>
+        <tr><td>18:55</td><td>Live AI coding demonstration</td></tr>
+        <tr><td>19:05</td><td>Build, on your own or in a pair</td></tr>
+        <tr><td>19:50</td><td>Peer playtest and revise</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Ask, run, play, change one thing. If the AI changes too much, ask it to undo. <a href="https://github.com/PlayableStories/vibe-coding-workshop/tree/main/prompts" target="_blank" rel="noopener">Prompt library</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/prompts/fixing-things.md" target="_blank" rel="noopener">Fixing things</a></p>
+  </section>
+
+  <!-- 23 — Pick your rung -->
+  <section class="slide" data-index="23">
+    <div class="eyebrow">Pick your rung</div>
+    <ol class="rungs">
+      <li><strong>Reskin</strong> — keep the rules, change the theme, writing or look. Most people start here, and it's plenty.</li>
+      <li><strong>Remix</strong> — change a rule to create a different meaning.</li>
+      <li><strong>Realise</strong> — design and build a new game from scratch.</li>
+    </ol>
+    <p class="small"><a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/02-pick-a-game.md" target="_blank" rel="noopener">Catalogue</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/03-reskin.md" target="_blank" rel="noopener">Reskin</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/04-remix.md" target="_blank" rel="noopener">Remix</a> · <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/06-realise.md" target="_blank" rel="noopener">Realise</a></p>
+  </section>
+
+  <!-- 24 — What the conversation sounds like -->
+  <section class="slide" data-index="24">
+    <div class="eyebrow">What the conversation sounds like</div>
+    <ul class="asks">
+      <li>"I want to make a game about ____. Before we build anything, ask me questions."</li>
+      <li>"What familiar game is closest to this feeling?"</li>
+      <li>"Where does this idea fall apart? Push back."</li>
+      <li>"Write this up as a build prompt for Claude Code. One HTML file or a static site, the smallest playable version."</li>
+    </ul>
+    <p class="small">Then hand your game to someone without explaining it. Watch them play.</p>
+  </section>
+
+  <!-- ============================================================
+       CLOSING (shared) · 20:10 – 20:30 · press S to jump here
+       ============================================================ -->
+
+  <!-- 25 — Showcase -->
+  <section class="slide" data-index="25" data-jump="s">
+    <div class="eyebrow">Showcase · about a minute each</div>
+    <ol class="rungs">
+      <li>What did you intend?</li>
+      <li>What did they actually experience?</li>
+      <li>What would you change next?</li>
+    </ol>
+    <p class="small">A prototype, a paper game, a remix or a discovery — all welcome.</p>
+  </section>
+
+  <!-- 26 — Bonus: publish and share -->
+  <section class="slide" data-index="26">
+    <div class="eyebrow">Built something digital? Bonus</div>
+    <h2>Get a link you can send to anyone.</h2>
+    <ul class="plain">
+      <li>Replit: <strong>Deploy</strong> or <strong>Publish</strong>, free option. Claude Code: upload the HTML file to itch.io.</li>
+      <li>Submit it at <a href="https://shorts.intostorymode.com/submit" target="_blank" rel="noopener">shorts.intostorymode.com/submit</a></li>
+      <li>May we use your name? Link to your game? Quote what you told us?</li>
+    </ul>
+    <p class="small">However you answer is entirely fine. <a href="https://github.com/PlayableStories/vibe-coding-workshop/blob/main/05-publish-and-share.md" target="_blank" rel="noopener">Publish and share</a></p>
+  </section>
+
+  <!-- 27 — Before you go -->
+  <section class="slide" data-index="27">
+    <div class="eyebrow">Before you go</div>
+    <h2>You came to play. You're leaving a game designer.</h2>
+    <p class="small">Mechanics carry meaning. Change a rule, change the experience. Test it with another person.</p>
+    <div class="feedback">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4QAAAOEAQAAAADRNcKWAAAFV0lEQVR4nO3dSw6jOBAA0PKo9+QGff9j9Q3gBJ4FH/9IpB71BFo8L6KAgSd5VbKr7JTju23558tgBJFIJBKJRCKRSCQSiUQikUgkEolEIpFIJBKJRCKReAMx9e1Vd2z/l6NjSan8bI8s23NvPxWPG1UikUgkEomXiT/qi2muLtLxk49/sV4uqbpXPzLlSOtXxk/t7QmjSiQSiUQi8Q7ij+56C0n2MKWuxprmiFhenwKg5o3uU3t7wqgSiUQikUj8K8R9ZSrnX6mZl5nyGtLknHMuy1PNGtV/Ev94IxKJRCKR+Eyxn88Z2roUlavLiOW1XpRJnVj/7Qtan9oTRpVIJBKJROIdxD7O6cKUFNPcJ9/UszplfWt5Nfk546f29oRRJRKJRCKReDtxqUukyu1hKWpfsiq9Kf3MTVzz5lO9+JVGJBKJRCLxmWI1n/N5xelseWq7t6T+uU+fesKoEolEIpFIvIO4phF37bx3bu/NEfW9pnd4rvrKE0aVSCQSiUTiHcQxkil1VPMRv0w516tVU/1GF8kMwJSbJs4hEolEIpH4pVatW21lVWUTwL3KKq8rU6WYqvzbq7GGbXeW1/7TtyeMKpFIJBKJxDuIfX5OOirHmyqrI5IZS8pz9W5sIU4cMdJWoVVtFviEUSUSiUQikXgHcawr37OK6wLxJTWV4xFRtkeO47J+N9SVE4lEIpFIvFhs1q0iIlfzOVXEU8cs+ejNVcdYdFWCoibiecKoEolEIpFIvIPYrFuV2Zkoq1B1Lk4c0U23jFVXnZe2tDvnrO0Jo0okEolEIvEO4lhXPp9Xk28Pz20hVvOV7X8pzjqt0HrCqBKJRCKRSLyD2FSET8O+OEOsMh/3mkim+8B2r3lYnEMkEolEIvG7bay3irZwKiJirZlqdkGul6f2jOQuZ6csWsnPIRKJRCKReK24HUW1z8mk9IrI+dd2PFU9x7OkFLGklPOv7ac+Ams5LqeTbQOfNqpEIpFIJBIvE/u68qjmZJZXlYy8taquvK3Bimg6mhRk++cQiUQikUi8Og95Hg5wODvV6kNqTvOI/BwikUgkEomXiv18Ttm/uDmg/HV05D1TZ987sH43osnPsX8OkUgkEonEC8Vx3SrqhapcxSrlkKsqQTn3b9SBUtl7p2pPGFUikUgkEol3EE/3yjm7HN6YI4bDzcfnnFdOJBKJRCLxKrFPyClxSX05H49P7/bZiTaZp+mQn0MkEolEIvHqOGeqf84DoHmYp+lyjrt74/7KTxhVIpFIJBKJdxD7fQLzkWQcVTF4VRYen5Jv9uydco7n2J4wqkQikUgkEu8gjvVWEXG2B059Zuce4pR9cVK14051ymeKbccd++cQiUQikUj8ujjm50REd6pVeW77Nw+Heb79ytCsWxGJRCKRSPxWOwlFmtScJuWmvNEd6nC2J2DpEOcQiUQikUi8Vkx9e0VsZ1nFdtLVFr8sJ2deNa0cd5XSz+6Qq4eNKpFIJBKJxMvEJj+nSzcubU8tLh3NgVZz1Adf7b3bMefhfCsikUgkEomXiO/ykOfmXnWUw1z11hM1JRQq6ctlB+WqPWFUiUQikUgk3kE8PfehtG3appxhHhHRV51HNNM2+yzOWVF5PGNUiUQikUgk/j3ilHNJ1+mSdFJKKW0pyEtKQ87O/tzviX+yEYlEIpFIfKbYz+eMW/+92g1zcrO0tfa+jj0GX/tr+6TO2J4wqkQikUgkEm8nLnW11dtXzrbJKQVW5VOl9LzpfdyoEolEIpFIvEhMb7Jo/re2PGFUiUQikUgkEolEIpFIJBKJRCKRSCQSiUQikUgkEonEtf0L/o7fMSP9s1UAAAAASUVORK5CYII=" alt="QR code for the feedback form" width="180" height="180">
+      <p class="small">Two minutes of feedback shapes the next session.<br><a href="https://forms.gle/fP8LDfjrJZhkaKKy6" target="_blank" rel="noopener">forms.gle/fP8LDfjrJZhkaKKy6</a></p>
+    </div>
+  </section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">1 / 27</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var counterEl = document.getElementById('counter');
+  var progressEl = document.getElementById('progress');
+  var current = 0;
+
+  var params = new URLSearchParams(window.location.search);
+  var printMode = params.has('print');
+
+  function render(){
+    slides.forEach(function(s, i){
+      s.classList.toggle('active', i === current);
+    });
+    counterEl.textContent = (current + 1) + ' / ' + total;
+    progressEl.style.width = (((current + 1) / total) * 100) + '%';
+  }
+
+  function goTo(i){
+    if(i < 0) i = 0;
+    if(i > total - 1) i = total - 1;
+    current = i;
+    render();
+  }
+
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  if(printMode){
+    document.body.classList.add('print-mode');
+  } else {
+    render();
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Spacebar'){
+        e.preventDefault();
+        next();
+      } else if(e.key === 'ArrowLeft'){
+        e.preventDefault();
+        prev();
+      } else if(!e.metaKey && !e.ctrlKey && !e.altKey && /^[abcsABCS]$/.test(e.key)){
+        var target = slides.findIndex(function(s){ return s.dataset.jump === e.key.toLowerCase(); });
+        if(target !== -1){ e.preventDefault(); goTo(target); }
+      } else if((e.key === 'f' || e.key === 'F') && !e.metaKey && !e.ctrlKey && !e.altKey){
+        e.preventDefault();
+        if(document.fullscreenElement){
+          document.exitFullscreen();
+        } else if(document.documentElement.requestFullscreen){
+          document.documentElement.requestFullscreen();
+        }
+      }
+    });
+
+    document.getElementById('deck').addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
+      var w = window.innerWidth;
+      if(e.clientX < w * 0.1){
+        prev();
+      } else if(e.clientX > w * 0.9){
+        next();
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
